@@ -26,7 +26,7 @@ Film.searchByText("Chicago"); // Returns [ Chicago, The Fugitive ]
 
 Results with the word "Chicago" in the title appear before those with the same word in the description or city. Thus the movie Chicago would appear first, and The Fugitive would be the second. 
  
-We can also add filtering and ordering by a certain field in addition to relevancy by making the search query:
+We can also add filtering and ordering by a certain field in addition to relevance by making the search query:
   
 ```js
 Film.searchByText("Mind order:releaseDate"); // Returns [ A Beautiful Mind, Eternal Sunshine of the Spotless Mind ]
