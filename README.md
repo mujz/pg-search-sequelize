@@ -287,6 +287,7 @@ attributes = {
 - `options`
     - `tableName` - If provided, it override the `tableName` of the passed model
     - `include` - An array of objects that define associated models' attributes to include in the materialized view's document.
+        
         ```js
         include = [
             {
@@ -304,6 +305,7 @@ attributes = {
             // Other associated models
         ]
         ```
+        
         - `model` - The model to include
         - `foreignKey` - The foreignKey of that points to the associated model. Note that based on the association type, the foreign key could be on the search model (the Film model in the example above) or on the other model (the Actor model).
         - `targetKey` - The key that the foreignKey references.
