@@ -247,7 +247,7 @@ Film.searchByText("Beautiful order:!rating"); // WHERE to_tsquery('Beatiful') @@
 Film.searchByText("Beatiful description:brilliant mathematician"); // WHERE to_tsquery('Beatiful') @@ document AND description ILIKE %brilliant mathematician%
 
 // You can also use comparison operators: =, >, <. >=, <=
-Film.searchByText("Beautiful rating:>=7) // WHERE to_tsquery('Beautiful') @@ document AND rating >= 7
+Film.searchByText("Beautiful rating:>=7") // WHERE to_tsquery('Beautiful') @@ document AND rating >= 7
 
 // If no operator is passed to the filter, an ILIKE operator is used. Just as seen in the first filtering example. 
 // If the field's type doesn't work with ILIKE, it is cast to TEXT.
