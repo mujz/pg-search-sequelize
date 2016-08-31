@@ -69,7 +69,7 @@ Now that you got a sneak peek of what this library enables you at the end, let's
 
 ### 1. Create Materialized View
 
-If you use the sequelize migrations tool, you can use the `createMaterializedView(queryInterface, name, referenceModel, attributes, options)` helper function provided by this library like so:
+If you use the sequelize migrations tool, you can use the `createMaterializedView(queryInterface, name, referenceModel, attributes, options)` helper function provided by the `QueryInterface` class:
 
 ```js
 const QueryInterface = require("pg-search-sequelize").QueryInterface;
@@ -107,11 +107,6 @@ module.exports: {
     down: queryInterface => QueryInterface.dropMaterializedView(queryInterface, materializedViewName)
 }
 ```
-
-Here are the options that you can pass to the `createMaterializedView` method: 
-
-- `tableName`: The tableName of the reference model.
-- `include`: An array of the associated models' fields to add to the materialized view.
 
 If you don't use the sequelize migration tool, feel free to create the materialized view in whatever way you prefer.
 
@@ -178,7 +173,7 @@ PG Search - Sequelize has 2 classes, `SearchModel` and `QueryInterface`.
 
 The `SearchModel` class is what you'd use to add the search and refresh class methods to your materialized view sequelize model. To access the `SearchModel` class `require("pg-search-sequelize")`. The following functions can be called from the model that you construct with the SearchModel class `MyModel = new SearchModel(MyModel)`
 
-##### search(query, options)
+#### search(query, options)
 
 Search materialized view model using a search query string and an options object.
 
@@ -218,7 +213,7 @@ Search materialized view model using a search query string and an options object
 
 `Promise` - An array of the search results instances with the attributes specified in the options object, the defaultScope of the materialized view model, or all the attributes in the materialized view model definition.
 
-##### searchByText(query)
+#### searchByText(query)
 
 Search materialized view model with a text query only. This is especially useful for exposing a search API endpoint to your model so you don't have to worry about parsing the search query string.
 
@@ -258,7 +253,7 @@ Film.searchByText("Beautiful releaseDate:200") // WHERE to_tsquery('Beautiful') 
 
 `Promise` - An array of the search results instances with the defaultScope attributes of the materialized view model, or all the attributes in the materialized view model definition.
 
-##### refresh()
+#### refresh()
 
 Refreshes the materialized view. ex. `models.Film.afterCreate(() => MaterializedViews.Film.refresh())`
 
@@ -266,7 +261,7 @@ Refreshes the materialized view. ex. `models.Film.afterCreate(() => Materialized
 
 The `QueryInterface` class is meant for running migrations; i.e. creating and dropping the materialized view. To access the `QueryInterface` class `require("pg-search-sequelize").QueryInterface`
 
-##### createMaterializedView(queryInterface, name, model, attributes, options)
+#### createMaterializedView(queryInterface, name, model, attributes, options)
 
 Creates a new materialized view in the database that has two fields; id and document. The document field is a `ts_vector` of the concatenated text of all the specified attributes/fields to be searchable
 
@@ -311,7 +306,7 @@ attributes = {
         - `attributes` - The attributes to include from the model.
         - `include` - An include array of models associated to the included model (ex. models associated to Actor)
 
-##### dropMaterializedView(queryInterface, name)
+#### dropMaterializedView(queryInterface, name)
 
 Drops the materialized view.
 
