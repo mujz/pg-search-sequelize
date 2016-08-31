@@ -199,7 +199,10 @@ Search materialized view model using a search query string and an options object
         } 
     }
     ```
-    - `attributes` - An array of the attributes to return. ex. `options.attributes = ["name", "releaseDate", "rating"]`
+    - `attributes` - An array of the attributes to return. ex. 
+    ```js 
+    options.attributes = ["name", "releaseDate", "rating"]
+    ```
     - `order` - An array of arrays with the first value being the attribute name and the second being the direction. For example: 
     ```js
     options.order = [
