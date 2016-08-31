@@ -1,0 +1,35 @@
+{
+  "name": "pg-search-sequelize",
+  "version": "0.0.1",
+  "description": "A library that uses sequelize and postgres fulltext search",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mujz/pg-search-sequelize.git"
+  },
+  "keywords": [
+    "fulltext",
+    "full-text",
+    "full",
+    "text",
+    "postgresql",
+    "node",
+    "psql",
+    "materialized",
+    "view",
+    "views"
+  ],
+  "author": "Mujtaba Al-Tameemi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mujz/pg-search-sequelize/issues"
+  },
+  "homepage": "https://github.com/mujz/pg-search-sequelize#readme",
+  "dependencies": {
+    "pg": "~6.1.0",
+    "sequelize": "~3.24.1"
+  }
+}
