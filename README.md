@@ -274,6 +274,7 @@ Creates a new materialized view in the database that has two fields; id and docu
 - `name` - The materialized view's name
 - `model` - The model of the table to create the materialized view for.
 - `attributes` - key-value pair object with the key being the field's name and the value the weight of the field.
+
 ```js
 attributes = {
     name: "A" // "A" is the highest weight
@@ -282,6 +283,7 @@ attributes = {
     city: "D" // "D" is the lowest possible weight
 }
 ```
+
 - `options`
     - `tableName` - If provided, it override the `tableName` of the passed model
     - `include` - An array of objects that define associated models' attributes to include in the materialized view's document.
