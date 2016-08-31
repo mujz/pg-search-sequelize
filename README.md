@@ -307,9 +307,9 @@ attributes = {
         ```
         
         - `model` - The model to include
-        - `foreignKey` - The foreignKey of that points to the associated model. Note that based on the association type, the foreign key could be on the search model (the Film model in the example above) or on the other model (the Actor model).
+        - `foreignKey` - The foreignKey that points to the associated model. Note that based on the association type, the foreign key could be on the reference model (the Film model in the example above) or on the other model (the Actor model).
         - `targetKey` - The key that the foreignKey references.
-        - `associationType` - The association type from the search model's (Film) perspective. It must be `hasOne`, `hasMany`, or `belongsTo`.
+        - `associationType` - The association type from the reference model's (Film) perspective. It must be `hasOne`, `hasMany`, or `belongsTo`.
         - `attributes` - The attributes to include from the model.
         - `include` - An include array of models associated to the included model (ex. models associated to Actor)
 
