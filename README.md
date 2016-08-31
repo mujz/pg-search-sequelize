@@ -214,7 +214,7 @@ Search materialized view model using a search query string and an options object
     
 ###### Returns
 
-`Promise` - An array of the search results instances with the attributes specified in the options object, the defaultScope of the materialized view model, or all the attributes in the materialized view model definition.
+`Promise` - An array of the search results instances with the attributes specified in the options object, the `defaultScope` of the materialized view model, or all the attributes in the materialized view model definition.
 
 #### searchByText(query)
 
@@ -254,7 +254,7 @@ Film.searchByText("Beautiful releaseDate:200") // WHERE to_tsquery('Beautiful') 
 
 ###### Returns
 
-`Promise` - An array of the search results instances with the defaultScope attributes of the materialized view model, or all the attributes in the materialized view model definition.
+`Promise` - An array of the search results instances with the `defaultScope` attributes of the materialized view model, or all the attributes in the materialized view model definition.
 
 #### refresh()
 
