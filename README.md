@@ -44,10 +44,10 @@ There's more you can do with this library. For further details on how to install
 
 # Install
 
-npm install the `pg-search-sequelize` package
+NPM install the `pg-search-sequelize` package
 
 ```bash
-npm i pg-search-sequelize
+npm i --save pg-search-sequelize
 ```
 
 Then require it in your materialized view model definition file and pass to it the sequelize model to make it searchable:
@@ -64,24 +64,6 @@ MyModel = new SearchModel(MyModel); // Construct a SearchModel out of the model 
 Please refer to [Usage](#usage) for how to define your model and how to create the Materialized View.
 
 # Usage
-
-After you create and define your materialized view model, which you can also do with this library, you would simply run:
-```js
-models.Film.searchByText("Mind"); // Returns [ A Beautiful Mind, Eternal Sunshine of the Spotless Mind ]
-
-// The following command searches for instances that match the search query,
-// filters by those with releaseDate later than 2002, and orders the results by name field
-models.Film.searchByText("Mind releaseDate:>2002 order:name"); // Returns [ Eternal Sunshine of the Spotless Mind ]
-
-// Or if you don't like strings, you can pass those properties in a JSON object
-// The following returns the same as the code above; i.e. [ Eternal Sunshine of the Spotless Mind ]
-models.Film.search("Mind", {
-    where: {
-        releaseDate: {operator: ">", value: "2002-01-01"} 
-    },
-    order: [["name", "ASC"]]
-}
-```
 
 Now that you got a sneak peek of what this library enables you at the end, let's get to the setup steps:
 
@@ -154,6 +136,24 @@ FilmMaterializedView = new SearchModel(FilmMaterializedView); // Adds search, se
 ### 3. That's It!
 
 Now you can call `materializedViewModel.search(query, options)` or `materializedViewModel.searchByText(query)` to run a full-text search on your model and its associations.
+
+```js
+models.Film.searchByText("Mind"); // Returns [ A Beautiful Mind, Eternal Sunshine of the Spotless Mind ]
+
+// The following command searches for instances that match the search query,
+// filters by those with releaseDate later than 2002, and orders the results by name field
+models.Film.searchByText("Mind releaseDate:>2002 order:name"); // Returns [ Eternal Sunshine of the Spotless Mind ]
+
+// Or if you don't like strings, you can pass those properties in a JSON object
+// The following returns the same as the code above; i.e. [ Eternal Sunshine of the Spotless Mind ]
+models.Film.search("Mind", {
+    where: {
+        releaseDate: {operator: ">", value: "2002-01-01"} 
+    },
+    order: [["name", "ASC"]]
+}
+```
+
 Don't forget to refresh the materialized view to update it with the latest changes made to your model. One way to do that is to create an afterCreate, afterUpdate, and afterDelete hook on your model to refresh the materialized view:
 
 ```js
