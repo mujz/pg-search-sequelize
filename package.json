@@ -1,6 +1,6 @@
 {
   "name": "pg-search-sequelize",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A library that uses sequelize and postgres fulltext search",
   "main": "index.js",
   "scripts": {
