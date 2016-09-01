@@ -69,7 +69,7 @@ Now that you got a sneak peek of what this library enables you at the end, let's
 
 ### 1. Create Materialized View
 
-If you use the sequelize migrations tool, you can use the `createMaterializedView(queryInterface, name, referenceModel, attributes, options)` helper function provided by the `QueryInterface` class:
+If you use the sequelize migrations tool, you can use the `createMaterializedView(name, referenceModel, attributes, options)` helper function provided by the `QueryInterface` class:
 
 ```js
 const QueryInterface = require("pg-search-sequelize").QueryInterface;
@@ -102,9 +102,9 @@ const options = {
     ]
 }
 module.exports: {
-    up: queryInterface => QueryInterface.createMaterializedView(queryInterface, materializedViewName, referenceModel, attributes, options),
+    up: queryInterface => new QueryInterface(queryInterface).createMaterializedView(materializedViewName, referenceModel, attributes, options),
     
-    down: queryInterface => QueryInterface.dropMaterializedView(queryInterface, materializedViewName)
+    down: queryInterface => new QueryInterface(queryInterface).dropMaterializedView(materializedViewName)
 }
 ```
 
@@ -262,15 +262,23 @@ Refreshes the materialized view. ex. `models.Film.afterCreate(() => Materialized
 
 ### QueryInterface
 
-The `QueryInterface` class is meant for running migrations; i.e. creating and dropping the materialized view. To access the `QueryInterface` class `require("pg-search-sequelize").QueryInterface`
+The `QueryInterface` class is meant for running migrations; i.e. creating and dropping the materialized view. To access the `QueryInterface` class `require("pg-search-sequelize").QueryInterface` in your `up` and `down` functions, construct an instance and pass to it the sequelize `queryInterface`:
+```js
+let QueryInterface = require("pg-search-sequelize").QueryInterface;
 
-#### createMaterializedView(queryInterface, name, model, attributes, options)
+module.exports = {
+    up: queryInterface => new QueryInterface(queryInterface).createMaterializedView(...),
+    
+    down: queryInterface => new QueryInterface(queryInterface).dropMaterializedView(...),
+};
+```
+
+#### createMaterializedView(name, model, attributes, options)
 
 Creates a new materialized view in the database that has two fields; id and document. The document field is a `ts_vector` of the concatenated text of all the specified attributes/fields to be searchable
 
 ###### Arguments
 
-- `queryInterface` - Sequelize's queryInterface
 - `name` - The materialized view's name
 - `model` - The model of the table to create the materialized view for.
 - `attributes` - key-value pair object with the key being the field's name and the value the weight of the field.
@@ -286,6 +294,7 @@ attributes = {
 
 - `options`
     - `tableName` - If provided, it override the `tableName` of the passed model
+    - `primaryKeyField` - If provided, it override the `primaryKeyField` of the passed model
     - `include` - An array of objects that define associated models' attributes to include in the materialized view's document.
         
         ```js
@@ -313,11 +322,10 @@ attributes = {
         - `attributes` - The attributes to include from the model.
         - `include` - An include array of models associated to the included model (ex. models associated to Actor)
 
-#### dropMaterializedView(queryInterface, name)
+#### dropMaterializedView(name)
 
 Drops the materialized view.
 
 ###### Arguments
 
-- `queryInterface` - Sequelize's queryInterface
 - `name` - The materialized view's name

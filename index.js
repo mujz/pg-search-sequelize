@@ -1,3 +1,3 @@
 module.exports = require('./lib/searchModel');
 
-module.exports.queryInterface = require('./lib/queryInterface');
+module.exports.QueryInterface = require('./lib/queryInterface');
