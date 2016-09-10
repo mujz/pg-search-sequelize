@@ -328,4 +328,4 @@ Drops the materialized view.
 
 ###### Arguments
 
-- `name` - The materialized view's name
+- `name` - The materialized view's name 
