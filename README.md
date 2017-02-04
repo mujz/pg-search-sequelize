@@ -2,7 +2,7 @@
 
 Postgres full-text search in Node.js using sequelize as its ORM.
 
-Check out the [Code Example](https://github.com/mujz/pg-search-sequelize-example) or the [Demo](https://project-demo.herokuapp.com/search)
+Check out the [Code Example](https://github.com/mujz/pg-search-sequelize-example).
 
 # How It Works
 
@@ -41,6 +41,7 @@ Film.searchByText("Tom Hanks"); // Returns Tom Hanks movies
 ```
 
 There's more you can do with this library. For further details on how to install and use it, Check out the [Install](#install) and [Usage](#usage) sections. For Documentation, check out the [Documentation](#documentation) section.
+
 
 # Install
 
