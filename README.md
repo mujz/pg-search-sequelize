@@ -1,3 +1,7 @@
+# Warning: Unfortunately, this package is no longer maintained! You are discouraged from using it. 
+
+Feel free to grab any pieces of code that you find useful. Or better yet, you're more than welcome to become a maintainer! My deepest sincere apologies for letting this project go. I hope it doesn't cause you any inconvenience. 
+
 # PG Search - Sequelize 
 
 Postgres full-text search in Node.js using sequelize as its ORM.
